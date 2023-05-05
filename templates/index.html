@@ -1,0 +1,27 @@
+<!-- A html page with a query text box that allows the user to input SQL then they see the results of the SQL -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SQL Query</title>
+  </head>
+  <body>
+    <h1>SQL Query</h1>
+    <form method="post" action="/">
+      <textarea name="sql" cols="80" rows="10">{{ sql }}</textarea>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+    {% if results %}
+    <h2>Results</h2>
+    <table>
+      {% for row in results %}
+      <tr>
+        {% for col in row %}
+        <td>{{ col }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </body>
+</html>
