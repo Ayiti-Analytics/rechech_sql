@@ -1,0 +1,110 @@
+Table Name,Variable Name,Variable Label,Description,Length,Values,
+py_clinician_mips_2021,npi,NPI,Unique clinician ID assigned by NPPES,10,string,
+py_clinician_mips_2021,ind_pac_id,PAC ID,Unique individual clinician ID assigned by PECOS,10,string,
+py_clinician_mips_2021,lst_nm,Last Name,Individual clinician last name,35,string,
+py_clinician_mips_2021,frst_nm,First Name,Individual clinician first name,25,string,
+py_clinician_mips_2021,mid_nm,Middle Name,Individual clinician middle name,25,string,
+py_clinician_mips_2021,suff,Suffix,Individual clinician suffix,10,string,
+py_clinician_mips_2021,facility_type,Facility Type,Facilities can fall into the following type categories:,40,string,
+py_clinician_mips_2021,facility_afl_ccn,Facility Affiliations CCN,Medicare CCN of facility type or unit within hospital where an individual clinician provides service,6,string,
+py_clinician_mips_2021,parent_ccn,Facility Affiliations Parent CCN,The Medicare CCN of the primary hospital where individual clinician provides service, should the clinician provide services in a unit within the hospital,6,string
+chronic_condition_puf,Bene_Geo_Lvl,Beneficiary Geographic Level,"Identifies the level of geography that the data in the row has been aggregated. A value of 'County' indicates the data in the row is aggregated to the county level and identifies a Medicare beneficiary’s geographic place of residence. A value of 'State' indicates the data in the row is aggregated to a single state identified as a Medicare beneficiary’s geographic place of residence. A value of 'National' indicates the data in the row is aggregated across all states, the District of Columbia, Puerto Rico, and the U.S. Virgin Islands.",,,
+chronic_condition_puf,Bene_Geo_Desc,"Beneficiary
+Geographic
+Description",Identifies the demographic level of the population that the data has been aggregated. A value of 'All' indicates the data in the row is represents all Fee-for-Service Medicare beneficiaries. A value of 'Sex' indicates that the data has been aggregated by the Medicare beneficiary's sex. A value of 'Race' indicates that the data has been aggregated by the Medicare beneficiary's race. A value of 'Dual Status' indicates that the data has been aggregated by the Medicare beneficiary's dual eligibility status.,,,
+chronic_condition_puf,Bene_Geo_Cd,Beneficiary Geographic Code,"Identifies the demographic level of the
+population that the data has been aggregated. A
+value of 'All' indicates the data in the row is
+represents all Fee-for-Service Medicare
+beneficiaries. A value of 'Sex' indicates that the
+data has been aggregated by the Medicare
+beneficiary's sex. A value of 'Race' indicates that
+the data has been aggregated by the Medicare
+beneficiary's race. A value of 'Dual Status'
+indicates that the data has been aggregated by
+the Medicare beneficiary's dual eligibility status. ",,,
+chronic_condition_puf,Bene_Age_Lvl,Beneficiary Age Level,"Identifies the demographic level of the
+population that the data has been aggregated. A
+value of 'All' indicates the data in the row is
+represents all Fee-for-Service Medicare
+beneficiaries. A value of 'Sex' indicates that the
+data has been aggregated by the Medicare
+beneficiary's sex. A value of 'Race' indicates that
+the data has been aggregated by the Medicare
+beneficiary's race. A value of 'Dual Status'
+indicates that the data has been aggregated by
+the Medicare beneficiary's dual eligibility status. ",,,
+chronic_condition_puf,Bene_Age_Lvl,"Beneficiary
+Demographic
+Level","Identifies the demographic level of the
+population that the data has been aggregated. A
+value of 'All' indicates the data in the row is
+represents all Fee-for-Service Medicare
+beneficiaries. A value of 'Sex' indicates that the
+data has been aggregated by the Medicare
+beneficiary's sex. A value of 'Race' indicates that
+the data has been aggregated by the Medicare
+beneficiary's race. A value of 'Dual Status'
+indicates that the data has been aggregated by
+the Medicare beneficiary's dual eligibility status. ",,,
+chronic_condition_puf,Bene_Demo_Desc,Beneficiary Demographic Description,"For Bene_Demo_Lvl='Sex', a beneficiary’s sex is
+classified as Male or Female and is identified
+using information from the CMS enrollment
+database .For Bene_Demo_Lvl='Race', the
+race/ethnicity classifications are: Non-Hispanic
+White, Black or African American, Asian/Pacific
+Islander, Hispanic, and American Indian/Alaska
+Native. All the chronic condition reports use the
+variable RTI_RACE_CD, which is available on the
+Master Beneficiary Files in the CCW. For
+Bene_Demo_Lvl='Dual Status',beneficiaries can
+be classified as 'Medicare & Medicaid' or
+'Medicare Only'. Beneficiares enrolled in both
+Medicare and Medicaid are known as “dual
+eligibles.” Medicare beneficiaries are classified
+as dual eligibles if in any month in the given
+calendar year they were receiving full or partial
+Medicaid benefits.",,,
+chronic_condition_puf,Bene_MCC,"Beneficiary
+Multiple Chronic
+Condition Group","To classify MCC for each Medicare beneficiary,
+the 21 chronic conditions are counted and
+grouped into four categories (0-1, 2-3, 4-5 and 6
+or more).",,,
+chronic_condition_puf,Prvlnc,Prevalence,"Prevalence estimates are calculated by taking
+the beneficiaries within MCC category divided by
+the total number of beneficiaries in our fee-forservice population, expressed as a percentage. ",,,
+chronic_condition_puf,Tot_Mdcr_Stdzd_Pymt_PC,"Total Medicare
+Standardized Per
+Capita Spending","Medicare standardized spending includes total
+Medicare payments for all covered services in
+Parts A and B and is presented per beneficiary
+(i.e. per capita). Standardized payments are
+presented to allow for comparisons across
+geographic areas in health care use among
+beneficiaries. More information on the
+standardization of Medicare payments can be
+found here.",,,
+chronic_condition_puf,Tot_Mdcr_Pymt_PC,"Total Medicare
+Per Capita
+Spending","Medicare spending includes total Medicare
+payments for all covered services in Parts A and
+B and is presented per beneficiary (i.e. per
+capita). ",,,
+chronic_condition_puf,Hosp_Readmsn_Rate,"Hospital
+Readmission Rate","Hospital readmissions are expressed as a
+percentage of all admissions. A 30-day
+readmission is defined as an admission to an
+acute care hospital for any cause within 30 days
+of discharge from an acute care hospital. Except
+when the patient died during the stay, each
+inpatient stay is classified as an index admission,
+a readmission, or both.",,,
+chronic_condition_puf,ER_Visits_Per_1000_Benes,"Emergency Room
+Visits per 1,000
+Beneficiaries","Emergency department visits are presented as
+the number of visits per 1,000 beneficiaries. ED
+visits include visits where the beneficiary was
+released from the outpatient setting and where
+the beneficiary was admitted to an inpatient
+setting. ",,,

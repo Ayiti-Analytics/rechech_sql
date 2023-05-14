@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data</title>
+</head>
+<body>
+    <div class="header">
+        <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/data_dict">Data Dictionary</a></li>
+        </ul>
+    </div>
+    <h1>Data</h1>
+    <form action="/data_dict" method="POST">
+        <label for="table">Select Table:</label>
+        <select name="table" id="table">
+            {% for table in table_names %}
+            <option value="{{ table }}">{{ table }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if data %}
+    <table>
+        <tr>
+            <th>Variable Name</th>
+            <th>Variable Label</th>
+            <th>Description</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row['Variable Name'] }}</td>
+            <td>{{ row['Variable Label'] }}</td>
+            <td>{{ row['Description'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>

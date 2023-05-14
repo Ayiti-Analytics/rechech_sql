@@ -1,27 +1,51 @@
-<!-- A html page with a query text box that allows the user to input SQL then they see the results of the SQL -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SQL Query</title>
-  </head>
-  <body>
-    <h1>SQL Query</h1>
-    <form method="post" action="/">
-      <textarea name="sql" cols="80" rows="10">{{ sql }}</textarea>
-      <br>
-      <input type="submit" value="Submit">
-    </form>
-    {% if results %}
-    <h2>Results</h2>
+<head>
+  <title>SQL Query App</title>
+</head>
+<body>
+  <div class="header">
+    <ul class="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/data_dict">Data Dictionary</a></li>
+    </ul>
+</div>
+  <h1>SQL Query App</h1>
+  <form method="post">
+    <label for="input_type">Input Type:</label>
+    <select name="input_type" id="input_type">
+      <option value="question">Question</option>
+      <option value="sql">SQL Code</option>
+    </select>
+    <br>
+    <label for="input_text">Input Text:</label>
+    <br>
+    <textarea name="input_text" id="input_text" rows="5" cols="50"></textarea>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  {% if results %}
+    <h2>Results:</h2>
+    <p>Input Text: {{ input_text }}</p>
+    <p>Generated SQL: {{ sql }}</p>
     <table>
-      {% for row in results %}
-      <tr>
-        {% for col in row %}
-        <td>{{ col }}</td>
+      <thead>
+        <tr>
+          {% for column in results[0].keys() %}
+            <th>{{ column }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in results %}
+          <tr>
+            {% for value in row.values() %}
+              <td>{{ value }}</td>
+            {% endfor %}
+          </tr>
         {% endfor %}
-      </tr>
-      {% endfor %}
+      </tbody>
     </table>
-    {% endif %}
-  </body>
+  {% endif %}
+</body>
 </html>
