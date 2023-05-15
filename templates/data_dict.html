@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}Home - SQL Interface{% endblock %}
 <body>
-    <div class="header">
-        <ul class="nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/data_dict">Data Dictionary</a></li>
-        </ul>
-    </div>
-    <h1>Data</h1>
+  {% block content %}
+    <h3>Data Dictionary</h3>
     <form action="/data_dict" method="POST">
         <label for="table">Select Table:</label>
         <select name="table" id="table">
@@ -22,7 +15,7 @@
         <input type="submit" value="Submit">
     </form>
     {% if data %}
-    <table>
+    <table class="table">
         <tr>
             <th>Variable Name</th>
             <th>Variable Label</th>
@@ -38,4 +31,4 @@
     </table>
     {% endif %}
 </body>
-</html>
+{% endblock %}
