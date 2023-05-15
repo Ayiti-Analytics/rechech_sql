@@ -99,9 +99,9 @@ def index():
         with engine.connect() as conn:
             results = conn.execute(text(sql)).fetchall()
         rows_dict = [row._asdict() for row in results]
-        return render_template('new_index.html', results=rows_dict, input_text=input_text, sql=sql)
+        return render_template('index.html', results=rows_dict, input_text=input_text, sql=sql)
     else:
-        return render_template('new_index.html')
+        return render_template('index.html')
 
 
 # Route to '/data_dict' that will render the data_dict.html template based on the data submitted from the form
@@ -120,4 +120,4 @@ def data():
         return render_template('data_dict.html',table_names=table_name_list)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
