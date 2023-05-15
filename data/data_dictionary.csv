@@ -1,4 +1,4 @@
-Table Name,Variable Name,Variable Label,Description,Length,Values,
+Table Name,Variable Name,Variable Label,Description,Length,Values,Unnamed: 6
 py_clinician_mips_2021,npi,NPI,Unique clinician ID assigned by NPPES,10,string,
 py_clinician_mips_2021,ind_pac_id,PAC ID,Unique individual clinician ID assigned by PECOS,10,string,
 py_clinician_mips_2021,lst_nm,Last Name,Individual clinician last name,35,string,
@@ -8,7 +8,7 @@ py_clinician_mips_2021,suff,Suffix,Individual clinician suffix,10,string,
 py_clinician_mips_2021,facility_type,Facility Type,Facilities can fall into the following type categories:,40,string,
 py_clinician_mips_2021,facility_afl_ccn,Facility Affiliations CCN,Medicare CCN of facility type or unit within hospital where an individual clinician provides service,6,string,
 py_clinician_mips_2021,parent_ccn,Facility Affiliations Parent CCN,The Medicare CCN of the primary hospital where individual clinician provides service, should the clinician provide services in a unit within the hospital,6,string
-chronic_condition_puf,Bene_Geo_Lvl,Beneficiary Geographic Level,"Identifies the level of geography that the data in the row has been aggregated. A value of 'County' indicates the data in the row is aggregated to the county level and identifies a Medicare beneficiary�s geographic place of residence. A value of 'State' indicates the data in the row is aggregated to a single state identified as a Medicare beneficiary�s geographic place of residence. A value of 'National' indicates the data in the row is aggregated across all states, the District of Columbia, Puerto Rico, and the U.S. Virgin Islands.",,,
+chronic_condition_puf,Bene_Geo_Lvl,Beneficiary Geographic Level,"Identifies the level of geography that the data in the row has been aggregated. A value of 'County' indicates the data in the row is aggregated to the county level and identifies a Medicare beneficiaryÕs geographic place of residence. A value of 'State' indicates the data in the row is aggregated to a single state identified as a Medicare beneficiaryÕs geographic place of residence. A value of 'National' indicates the data in the row is aggregated across all states, the District of Columbia, Puerto Rico, and the U.S. Virgin Islands.",,,
 chronic_condition_puf,Bene_Geo_Desc,"Beneficiary
 Geographic
 Description",Identifies the demographic level of the population that the data has been aggregated. A value of 'All' indicates the data in the row is represents all Fee-for-Service Medicare beneficiaries. A value of 'Sex' indicates that the data has been aggregated by the Medicare beneficiary's sex. A value of 'Race' indicates that the data has been aggregated by the Medicare beneficiary's race. A value of 'Dual Status' indicates that the data has been aggregated by the Medicare beneficiary's dual eligibility status.,,,
@@ -47,7 +47,7 @@ the data has been aggregated by the Medicare
 beneficiary's race. A value of 'Dual Status'
 indicates that the data has been aggregated by
 the Medicare beneficiary's dual eligibility status. ",,,
-chronic_condition_puf,Bene_Demo_Desc,Beneficiary Demographic Description,"For Bene_Demo_Lvl='Sex', a beneficiary�s sex is
+chronic_condition_puf,Bene_Demo_Desc,Beneficiary Demographic Description,"For Bene_Demo_Lvl='Sex', a beneficiaryÕs sex is
 classified as Male or Female and is identified
 using information from the CMS enrollment
 database .For Bene_Demo_Lvl='Race', the
@@ -60,8 +60,8 @@ Master Beneficiary Files in the CCW. For
 Bene_Demo_Lvl='Dual Status',beneficiaries can
 be classified as 'Medicare & Medicaid' or
 'Medicare Only'. Beneficiares enrolled in both
-Medicare and Medicaid are known as �dual
-eligibles.� Medicare beneficiaries are classified
+Medicare and Medicaid are known as Òdual
+eligibles.Ó Medicare beneficiaries are classified
 as dual eligibles if in any month in the given
 calendar year they were receiving full or partial
 Medicaid benefits.",,,
@@ -108,3 +108,308 @@ visits include visits where the beneficiary was
 released from the outpatient setting and where
 the beneficiary was admitted to an inpatient
 setting. ",,,
+puf_quality_payment_program,Provider_Key,"Provider
+Key",Random unique key assigned to each row.,,,
+puf_quality_payment_program,Practice_State_or_US_territory,"Practice
+State or US
+territory","The State or United States (US)
+territory code location of the TIN
+associated with the clinician.",,,
+puf_quality_payment_program,Practice_Size,"Practice
+Size","Count of clinicians associated with
+TIN from the second segment of the
+MIPS eligibility determination period. ",,,
+puf_quality_payment_program,Clinician_Specialty,"Clinician
+Specialty","The specialty description is an
+identifier corresponding to the type of
+service that the clinician submitted
+most on their Medicare Part B claims
+for this TIN/NPI combination.",,,
+puf_quality_payment_program,Years_in_Medicare,"Years in
+Medicare","The number of years since the first
+date an enrollment was approved for
+this NPI across all enrollments in
+PECOS.",,,
+puf_quality_payment_program,NPI,NPI,"The National Provider Identifier
+assigned to the clinician when they
+enrolled in Medicare.
+Multiple rows for the same NPI
+indicate multiple TIN/NPI
+combinations.",,,
+puf_quality_payment_program,Engaged,Engaged,"Indicates if the clinician reported a
+minimum of one measure or activity
+as an individual or group, or
+participated in a MIPS APM.",,,
+puf_quality_payment_program,Participation_Type,"Participation
+Type","Indicates the level at which
+performance data was collected,
+submitted or reported for the final
+score attributed to the clinician. (This
+information drives the data displayed
+for most of the remaining fields in this
+report.) All data elements from this point forward are based on the Participation Type identified in the
+preceding column (column 8). For example, if the participation type indicates ÒGroupÓ, the
+Medicare Patients in the next column are attributed to the TIN, not the individual clinician.",,,
+puf_quality_payment_program,Medicare_Patients,Medicare Patients,"The number of Medicare patients
+who received covered professional
+services during one segment of the
+MIPS eligibility determination period
+that was attributed to the
+participation type (indicated in
+column 8) associated with the
+clinicianÕs final score.",,,
+puf_quality_payment_program,Allowed_Charges,"Allowed
+Charges","The allowed charges under the
+Physician Fee Schedule on Medicare
+Part B claims with a service date
+during one segment of the MIPS
+eligibility determination period that
+was attributed to the participation
+type (indicated in column 8)
+associated with the clinicianÕs final
+score.",,,
+puf_quality_payment_program,Services,Services,"The number of covered professional
+services provided to Medicare Part B
+patients with a service date during
+one segment of the MIPS eligibility
+determination period that was
+attributed to the participation type
+(indicated in column 8) associated
+with the clinicianÕs final score.",,,
+puf_quality_payment_program,Opted_Into_MIPS,"Opted Into
+MIPS","Indicates if an Òopt-in eligibleÓ
+clinician, group or APM Entity elected
+to participate in MIPS and receive a
+payment adjustment.
+(A clinician, group or APM Entity that
+is otherwise eligible for the Meritbased Incentive Payment System
+(MIPS) and exceeds 1 or 2, but not
+all 3 low-volume threshold criteria, is
+considered Òopt-in eligibleÓ.) This
+status is attributed to the participation
+type (indicated in column 8)
+associated with the clinicianÕs final
+score.",,,
+puf_quality_payment_program,Small_Practitioner,"Small
+Practitioner","Indicates if the clinician, group or
+APM Entity had the small practice
+special (15 or fewer clinicians billed
+under the TIN or APM Entity) based
+on either segment of the MIPS
+eligibility determination period.
+Note: This number can contradict the
+practice size in column 3 which is
+always based on the 2nd segment.",,,
+puf_quality_payment_program,Rural_Clinician,"Rural
+Clinician","Indicates if the clinician or group had
+the rural special status (practiced in a
+ZIP code designated as rural by the
+Federal Office of Rural Health Policy
+(FORHP) using the most recent
+FORHP Eligible ZIP code file
+available)",,,
+puf_quality_payment_program,HPSA_Clinician,"HPSA
+Clinician","Indicates if the clinician or group had
+the HPSA special status (practiced in
+a Health Professional Shortage Area
+(HPSA).",,,
+puf_quality_payment_program,Ambulatory_Surgical_Center,"Ambulatory
+Surgical
+Center","Indicates if the clinician or group had
+the ambulatory surgical center-based
+special status (determined by the
+volume of their covered professional
+services furnished in an ambulatory
+surgical center.)
+This status is attributed to the
+participation type (indicated in
+column 8) associated with the
+clinicianÕs final score.",,,
+puf_quality_payment_program,HospitalBased_Clinician,"HospitalBased
+Clinician","Indicates if the clinician or group had
+the hospital-based special status
+(determined by the volume of their
+covered professional services
+furnished in a hospital setting).
+This status is attributed to the
+participation type (indicated in
+column 8) associated with the
+clinicianÕs final score. ",,,
+puf_quality_payment_program,Non-Patient_Facing,"Non-Patient
+Facing","Indicates if the clinician or group has
+the facility-based special status
+(based on volume of services
+furnished in a facility eligible for the
+Hospital Value-based Purchasing
+program).
+This status is attributed to the
+participation type (indicated in
+column 8) associated with the
+clinicianÕs final score.",,,
+puf_quality_payment_program,FacilityBased,FacilityBased,"Indicates if the clinician or group has
+the facility-based special status
+(based on volume of services
+furnished in a facility eligible for the
+Hospital Value-based Purchasing
+program).
+This status is attributed to the
+participation type (indicated in
+column 8) associated with the
+clinicianÕs final score.",,,
+puf_quality_payment_program,Extreme_Hardship,"Extreme
+Hardship",Indicates if the clinician or group was affected by an extreme and uncontrollable circumstance (EUC) (such as FEMA-designated major disaster) and qualified for performance category reweighting because of the MIPS automatic EUC policy or MIPS EUC exception application. This indicator is attributed to the participation type (indicated in column 8) associated with the clinicianÕs final score.,,,
+puf_quality_payment_program,Final_Score,Final Score,"The MIPS final score attributed to the
+clinician (the highest final score that
+could be attributed to the clinicianÕs
+TIN/NPI combination).
+This is based on the participation
+type (indicated in column 8).",,,
+puf_quality_payment_program,Payment_Adjustment,"Payment
+Adjustment","The total payment adjustment
+attributed to the clinician for the 2022
+payment year. Payment adjustments
+are determined by comparing the
+final score to the performance
+thresholds, and then scaled to
+ensure budget neutrality.",,,
+puf_quality_payment_program,Complex_Patient_Bonus,"Complex
+Patient
+Bonus","The complex patient bonus
+associated with the final score
+attributed to the clinician. ",,,
+puf_quality_payment_program,Extreme_Hardship_Quality,"Extreme
+Hardship
+Quality","Indicates if the clinician, group or
+APM Entity was approved for
+reweighting of the quality
+performance category due to
+extreme and uncontrollable
+circumstances. This indicator is
+attributed to the participation type
+(indicated in column 8) associated
+with the clinicianÕs final score. ",,,
+puf_quality_payment_program,Quality_Category_Score,Quality Category Score,"This is the unweighted score
+received for the quality score that is
+used for the overall score.",,,
+puf_quality_payment_program,Quality_Bonus,Quality Bonus,"The bonus points received for the quality category (small practice bonus and quality improvement, if applicable).",,,
+puf_quality_payment_program,Quality_Measure_ID_X,Quality Measure ID X,"MIPS Quality ID for one of the quality
+measures that contributed to the final
+score.",,,
+puf_quality_payment_program,Quality_Measure_Score_X,Quality Measure Score X,"Measure score (including bonus
+points) achieved for the
+corresponding MIPS Quality ID that
+contributed to the final score.",,,
+puf_quality_payment_program,Promoting_Interoperability_(PI)_Category_score,"Promoting
+Interoperability (PI) Category score","This is the unweighted score
+received by the participant for the
+Promoting Interoperability
+performance category, the score that
+is used for the final score. MIPS APM
+participants receive their APM Entity
+roll-up score.",,,
+puf_quality_payment_program,Extreme_Hardship_PI,"Extreme
+Hardship PI","Indicates if the clinician, group or
+APM Entity was approved for
+reweighting of the Promoting
+Interoperability performance category
+due to extreme and uncontrollable
+circumstances. ",,,
+puf_quality_payment_program,PI_Hardship,PI Hardship,"Indicates if the clinician or group was
+approved for an exception from the
+Promoting Interoperability
+performance category due to
+participation in a small practice,
+decertified Electronic Health Record
+(EHR) technology, insufficient
+Internet connectivity, or lack of
+control over the availability of
+certified EHR technology (CEHRT). ",,,
+puf_quality_payment_program,PI_Reweighting,PI Reweighting,"Indicates if the clinician or group
+qualified for an automatic reweighting
+from the Promoting Interoperability
+performance category due to special
+status or clinician specialty.",,,
+puf_quality_payment_program,PI_Bonus_,PI Bonus ,"The total bonus points received by
+the clinician, group or APM Entity for
+the Promoting Interoperability
+performance category.",,,
+puf_quality_payment_program,PI_CEHRT_ID_(measurem_ent_set__cehrt_id),"PI CEHRT
+ID
+(measurem
+ent_set_
+cehrt_id)","This is a unique identifier generated
+by the Office of the National
+Coordinator for Health Information
+Technology (ONC) and identifies a
+specific bundle of software or EHR.
+The CEHRT ID is a 15-character
+alpha- numeric string which can be
+found on the CHPL website. This is
+the CEHRT ID included in the data
+that contributed to the clinicianÕs final
+score.",,,
+puf_quality_payment_program,PI_Measure_ID_X,"PI Measure
+ID X","MIPS Promoting Interoperability ID
+for one of the Promoting
+Interoperability measures that
+contributed to the final score.",,,
+puf_quality_payment_program,PI_Measure_Score_X,"PI Measure
+Score X","Measure score achieved for the
+corresponding MIPS Promoting
+Interoperability ID that contributed to
+the final score.",,,
+puf_quality_payment_program,IA_Score,IA Score,"The score received for the
+improvement activities performance
+category based on all the activities
+picked for the category that
+contributed to the final score",,,
+puf_quality_payment_program,Extreme_Hardship_IA,"Extreme
+Hardship IA","Indicates if the clinician, group or
+APM Entity was approved for
+reweighting of the improvement
+activities performance category due
+to extreme and uncontrollable
+circumstances. ",,,
+puf_quality_payment_program,IA_Study,IA Study,"This data element will show as
+FALSE for everyone because this
+study concluded after the 2019
+performance year.",,,
+puf_quality_payment_program,IA_Measure_ID_X,"IA Measure
+ID X","MIPS Improvement Activity ID for
+one of the improvement activities that
+contributed to the final score.",,,
+puf_quality_payment_program,IA_Measure_Score_X,"IA Measure
+Score X","Activity score achieved for the
+corresponding MIPS Improvement
+Activity ID that contributed to the final
+score",,,
+puf_quality_payment_program,Cost_Score,Cost Score,"The unweighted score received for
+the cost performance category is
+based on all the cost measures used
+for final scoring. Will display as Ò0Ó
+for all clinicians because cost was
+reweighted in the 2020 performance
+year. ",,,
+puf_quality_payment_program,Extreme_Hardship_Cost,"Extreme
+Hardship
+Cost","Indicates if the clinician was
+approved for reweighting of the cost
+performance category due to
+extreme and uncontrollable
+circumstances. (Not applicable (N/A)
+for 2020; this category was
+reweighted for all individuals and
+groups.)",,,
+puf_quality_payment_program,Cost_Measure_ID_X,"Cost
+Measure ID X","MIPS Cost ID for one of the cost
+measures that contributed to the final
+score. (N/A for 2020; this category
+was reweighted for all individuals and
+groups.)",,,
+puf_quality_payment_program,Cost_Measure_Score_X,"Cost
+Measure
+Score X","Cost score achieved for the
+corresponding MIPS Cost ID that
+contributed to the final score. (N/A for
+2020; this category was reweighted
+for all individuals and groups.)",,,
