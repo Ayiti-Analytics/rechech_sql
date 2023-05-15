@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>SQL Query App</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}Home - SQL Interface{% endblock %}
 <body>
-  <h1>SQL Query App</h1>
+  {% block content %}
+  <h3>Data Query App</h3>
   <form method="post">
     <label for="input_type">Input Type:</label>
     <select name="input_type" id="input_type">
@@ -22,7 +21,7 @@
     <h2>Results:</h2>
     <p>Input Text: {{ input_text }}</p>
     <p>Generated SQL: {{ sql }}</p>
-    <table>
+    <table class="table">
       <thead>
         <tr>
           {% for column in results[0].keys() %}
@@ -41,5 +40,5 @@
       </tbody>
     </table>
   {% endif %}
+  {% endblock %}
 </body>
-</html>
