@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # import the dotenv library
 from dotenv import load_dotenv
-
+load_dotenv()
 # Configure the database connection to an AWS RDS instance
 # The connection string format is:
 # dialect://username:password@host:port/database
