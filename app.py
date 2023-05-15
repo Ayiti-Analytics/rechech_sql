@@ -298,9 +298,9 @@ def data():
         # Convert the filtered data to a list of dictionaries
         data = filtered_data.to_dict('records')
 
-        return render_template('data_dict.html', data=data, table_names=table_name_list)
+        return render_template('data_dict.html', data=data, table_names=table_name_list, selected_table=table)
     else:
-        return render_template('data_dict.html',table_names=table_name_list)
+        return render_template('data_dict.html',table_names=table_name_list,selected_table='')
     
 @app.route('/questions', methods=['GET'])
 def questions():
