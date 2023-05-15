@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}SQL Error{% endblock %}
+<body>
+  {% block content %}
+    <h1>Error:</h1>
+    <p>{{ error }}</p>
+    
+    <h2>Entered Query:</h2>
+    <p>{{ query }}</p>
+    {% endblock %}
+</body>
