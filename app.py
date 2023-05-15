@@ -301,6 +301,10 @@ def data():
         return render_template('data_dict.html', data=data, table_names=table_name_list)
     else:
         return render_template('data_dict.html',table_names=table_name_list)
+    
+@app.route('/questions', methods=['GET'])
+def questions():
+    return render_template('questions.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
