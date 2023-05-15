@@ -4,6 +4,12 @@
 <body>
   {% block content %}
   <h3>Data Query App</h3>
+  <p>There are three tables to query:</p>
+  <ul>
+    <li>py_clinician_mips_2021: Each MIPS measure score for a Medicare Provider is reported</li>
+    <li>chronic_condition_puf: Data on chronic conditions amongst the Medicare Population by geographic area is reported</li>
+    <li>puf_quality_payment_program: Aggregate Quality Score for a Medicare Provider is recorded</li>
+  </ul>
   <form method="post">
     <label for="input_type">Input Type:</label>
     <select name="input_type" id="input_type">
