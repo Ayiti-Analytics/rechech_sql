@@ -69,7 +69,6 @@ Description: Medicare CCN of facility type or unit within hospital where an indi
 Variable Name: parent_ccn
 Description: The Medicare CCN of the primary hospital where individual clinician provides service.
 
---------------------------------
 Table Name: chronic_condition_puf
 Variable Name: Bene_Geo_Lvl
 Description: Identifies the level of geography that the data in the row has been aggregated. A value of 'County' indicates the data in the row is aggregated to the county level and identifies a Medicare beneficiary's geographic place of residence. A value of 'State' indicates the data in the row is aggregated to a single state identified as a Medicare beneficiary's geographic place of residence. 
@@ -104,7 +103,6 @@ Description: Hospital readmissions are expressed as a percentage of all admissio
 Variable Name: ER_Visits_Per_1000_Benes
 Description: Emergency department visits are presented as the number of visits per 1,000 beneficiaries.
 
---------------------------------
 Table Name: puf_quality_payment_program
 
 Variable Name: Provider_Key
@@ -243,7 +241,6 @@ Description: MIPS Cost ID for one of the cost measures that contributed to the f
 Variable Name: Cost_Measure_Score_X
 Description: Cost score achieved for the corresponding MIPS Cost ID that contributed to the final score.
 
---------------------------------
 Convert this natural language query into SQL based on the tables defined above in the database: 
 """
 
@@ -255,7 +252,7 @@ data_dict = pd.read_csv(os.path.join(data_dir, "data_dictionary.csv"),encoding='
 table_name_list = data_dict['Table Name'].unique().tolist()
 
 app = Flask(__name__)
-
+print(f"postgresql+psycopg2://{db_username}:{db_password}@{db_host}:5432/{db_name}")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -269,7 +266,7 @@ def index():
             response = openai.Completion.create(
                 engine=model,
                 prompt=prompt,
-                max_tokens=1024,
+                max_tokens=824,
                 n=1,
                 stop=None,
                 temperature=0.5,
