@@ -262,15 +262,15 @@ def index():
             if request.form['input_type'] == 'question':
                 # Generate SQL from question using OpenAI's GPT-3 API
                 #prompt = f"Convert this natural language query into SQL: {input_text}"
-                prompt = openai_prompt + input_text + "\n\ Use limit clause to only return a maximum of 100 rows and write the SQL in the postgresql syntax.\nSQL:"
+                prompt = openai_prompt + input_text + "\n\ Use limit clause return a maximum of 100 rows and write the SQL in the postgresql syntax. Write the SQL with the fully qualified column names so there is no ambiguity.\nPostgres SQL:"
                 model = "text-davinci-003"
                 response = openai.Completion.create(
                     engine=model,
                     prompt=prompt,
-                    max_tokens=824,
+                    max_tokens=800,
                     n=1,
                     stop=None,
-                    temperature=0.5,
+                    temperature=0.2,
                 )
                 sql = response.choices[0].text.strip()
             else:
