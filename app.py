@@ -27,7 +27,7 @@ db_host = os.environ.get('DB_HOST')
 db_name = os.environ.get('DB_NAME')
 
 db_port = 5439
-engine = create_engine(f"postgresql+psycopg2://{db_username}:{db_password}@{db_host}:5439/{db_name}")
+engine = create_engine(f"redshift+psycopg2://{db_username}:{db_password}@{db_host}:5439/{db_name}")
 
 
 
