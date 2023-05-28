@@ -43,26 +43,6 @@ llm = OpenAI(openai_api_key=os.environ.get("OPENAI_API"), temperature=0)
 db = SQLDatabase.from_uri(db_uri)
 db_chain = SQLDatabaseChain(llm=llm,database=db,verbose=True,use_query_checker=True, return_intermediate_steps=True)
 
-Table: producer_prices_hti
-Columns:
-- Iso3                nvarchar
-- StartDate           nvarchar
-- EndDate             nvarchar
-- "Area Code"          float64
-- "Area Code (M49)"     nvarchar
-- Area                nvarchar
-- "Item Code"           nvarchar
-- "Item Code (CPC)"     nvarchar
-- Item                nvarchar
-- "Element Code"       float64
-- Element             nvarchar
-- "Year Code"          float64
-- Year                nvarchar
-- "Months Code"        float64
-- Months              nvarchar
-- Unit                nvarchar
-- Value               nvarchar
-- Flag                nvarchar
 
 
 # Get the absolute path to the "data" directory
