@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - SQL Interface{% endblock %}
+<body>
+  {% block content %}
+  <h3>Data Query App</h3>
+  <p> The database below is a POSTGRES database. Due to the memory limitations on this application, please limit all your query returns to 100 rows.</p>
+  <br
+  <p>There are three tables to query:</p>
+  <ul>
+    <li>py_clinician_mips_2021: Each MIPS measure score for a Medicare Provider is reported</li>
+    <li>chronic_condition_puf: Data on chronic conditions amongst the Medicare Population by geographic area is reported</li>
+    <li>puf_quality_payment_program: Aggregate Quality Score for a Medicare Provider is recorded</li>
+  </ul>
+  <form method="post">
+    <label for="input_type">Input Type:</label>
+    <select name="input_type" id="input_type">
+      <option value="sql">SQL Code</option>
+      <option value="question">Question</option>
+    </select>
+    <br>
+    <label for="input_text">Input Text:</label>
+    <br>
+    <textarea name="input_text" id="input_text" rows="5" cols="50"></textarea>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  {% if results %}
+    <h2>Results:</h2>
+    <p>Input Text: {{ input_text }}</p>
+    <p>Generated SQL: {{ sql }}</p>
+    <table class="table">
+      <thead>
+        <tr>
+          {% for column in results[0].keys() %}
+            <th>{{ column }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in results %}
+          <tr>
+            {% for value in row.values() %}
+              <td>{{ value }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+  {% endblock %}
+</body>

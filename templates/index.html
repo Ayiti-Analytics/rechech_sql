@@ -5,8 +5,10 @@
   {% block content %}
   <h3>Rechec SQL App</h3>
   <p> The database below is a POSTGRES database. Due to the memory limitations on this application, please limit all your query returns to 100 rows.</p>
+  <h4>AI Data Helper</h4>
+  <p>If you do not know how to write SQL, you can select the question option below and write a question, the AI will try it's best to give you answer.</p>
   <br
-  <p>There are three tables to query:</p>
+  <p>There are the following tables to query:</p>
   <ul>
     <li>qc_consumer_price_indices_hti</li>
     <li>infrastructure_hti</li>
@@ -47,6 +49,49 @@
         {% endfor %}
       </tbody>
     </table>
+  {% endif %}
+  {% if ai_result %}
+    <h2>AI Response:</h2>
+    <p>Input Text: {{ input_text }}</p>
+    <br>
+    <p>AI Response: {{ai_result}}</p>
+    <h2>AI Steps:</h2>
+    {% for item in data %}
+        {% if item is mapping %}
+            <h2>Step {{ loop.index }}:</h2>
+            <ul>
+                {% for key, value in item.items() %}
+                    {% if key == 'table_info' %}
+                        <h3>{{ key }}</h3>
+                        <table>
+                            {% for table_row in value.split('\n') %}
+                                {% if table_row %}
+                                    {% if loop.first %}
+                                        <tr>
+                                            {% for table_header in table_row.split('\t') %}
+                                                <th>{{ table_header }}</th>
+                                            {% endfor %}
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            {% for table_data in table_row.split('\t') %}
+                                                <td>{{ table_data }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <li><strong>{{ key }}:</strong> {{ value }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ item }}</p>
+        {% endif %}
+    {% endfor %}
+
   {% endif %}
   {% endblock %}
 </body>
