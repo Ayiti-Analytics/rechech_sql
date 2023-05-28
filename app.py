@@ -39,10 +39,11 @@ engine = create_engine(db_uri)
 # Load OpenAI API key from environment variable
 openai.api_key = os.environ.get("OPENAI_API")
 
-
 llm = OpenAI(openai_api_key=os.environ.get("OPENAI_API"), temperature=0)
 db = SQLDatabase.from_uri(db_uri)
 db_chain = SQLDatabaseChain(llm=llm,database=db,verbose=True,use_query_checker=True, return_intermediate_steps=True)
+
+
 
 # Get the absolute path to the "data" directory
 data_dir = os.path.abspath("data")
