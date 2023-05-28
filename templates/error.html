@@ -5,8 +5,9 @@
   {% block content %}
     <h1>Error:</h1>
     <p>{{ error }}</p>
-    
+    {% if query %}
     <h2>Entered Query:</h2>
     <p>{{ query }}</p>
+    {% endif %}
     {% endblock %}
 </body>

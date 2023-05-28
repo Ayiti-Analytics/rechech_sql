@@ -1,0 +1,28 @@
+    <title>Data Page</title>
+</head>
+<body>
+    <div class="header">
+        <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/data">Data Page</a></li>
+        </ul>
+    </div>
+    <h1>Data Page</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Field Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for field in data %}
+            <tr>
+                <td>{{ field.field_name }}</td>
+                <td>{{ field.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
