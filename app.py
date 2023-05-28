@@ -41,6 +41,26 @@ openai.api_key = os.environ.get("OPENAI_API")
 openai_prompt = """
 Given the following postgres database table schema:
 
+Table: producer_prices_hti
+Columns:
+- Iso3                nvarchar
+- StartDate           nvarchar
+- EndDate             nvarchar
+- "Area Code"          float64
+- "Area Code (M49)"     nvarchar
+- Area                nvarchar
+- "Item Code"           nvarchar
+- "Item Code (CPC)"     nvarchar
+- Item                nvarchar
+- "Element Code"       float64
+- Element             nvarchar
+- "Year Code"          float64
+- Year                nvarchar
+- "Months Code"        float64
+- Months              nvarchar
+- Unit                nvarchar
+- Value               nvarchar
+- Flag                nvarchar
 
 Convert this natural language query into SQL based on the tables defined above in the database: 
 """
