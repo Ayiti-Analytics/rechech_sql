@@ -8,8 +8,12 @@ import pandas as pd
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from langchain.agents import load_tools
+from langchain.agents import load_tools,create_sql_agent
 from langchain import SQLDatabase, SQLDatabaseChain
+from langchain.agents.agent_toolkits import SQLDatabaseToolkit
+from langchain.sql_database import SQLDatabase
+from langchain.agents import AgentExecutor
+from langchain.agents.agent_types import AgentType
 
 
 # Create an instance of Flask
@@ -41,16 +45,19 @@ openai.api_key = os.environ.get("OPENAI_API")
 
 llm = OpenAI(openai_api_key=os.environ.get("OPENAI_API"), temperature=0,max_tokens=800)
 db = SQLDatabase.from_uri(db_uri)
-db_chain = SQLDatabaseChain(llm=llm,database=db,verbose=True,use_query_checker=True, return_intermediate_steps=True)
+toolkit = SQLDatabaseToolkit(db=db, llm=llm)
 
+agent_executor = create_sql_agent(
+    llm=llm,
+    toolkit=toolkit,
+    verbose=True,
+    agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    return_intermediate_steps=True,
+)
 
 
 # Get the absolute path to the "data" directory
 data_dir = os.path.abspath("data")
-
-# Use the absolute path when reading the CSV file
-data_dict = pd.read_csv(os.path.join(data_dir, "data_dictionary.csv"),encoding='latin-1')
-table_name_list = data_dict['Table Name'].unique().tolist()
 
 app = Flask(__name__)
 
@@ -60,27 +67,12 @@ def index():
         input_text = request.form['input_text']
         if request.form['input_type'] == 'question':
             # Generate SQL from question using OpenAI's GPT-3 API
-            #prompt = f"Convert this natural language query into SQL: {input_text}"
-            #prompt = openai_prompt + input_text + "\n\ Use limit clause return a maximum of 100 rows and write the SQL in the postgresql syntax. Write the SQL with the fully qualified column names so there is no ambiguity.\nPostgres SQL:"
-            #model = "text-davinci-003"
-            """
-            response = openai.Completion.create(
-                engine=model,
-                prompt=prompt,
-                max_tokens=800,
-                n=1,
-                stop=None,
-                temperature=0.2,
-            )
-            """
-            #response = llm(prompt)
-            #sql = response#.choices[0].text.strip()
             try:
-                response = db_chain(input_text)
-                ai_result = response['result']
-                steps = response['intermediate_steps']
-                string_steps = [i for i in steps if type(i)==str]
-                return render_template('index.html', ai_result=ai_result, input_text=input_text,data = steps )
+                response = agent_executor(input_text)
+                ai_result = response['output']
+                #steps = response['intermediate_steps']
+                #string_steps = [i for i in steps if type(i)==str]
+                return render_template('index.html', ai_result=ai_result, input_text=input_text)
             except Exception as e:
                 # Render the template with the SQL error
                 print(input_text)
@@ -100,28 +92,6 @@ def index():
     else:
         return render_template('index.html')
     
-
-# Route to '/data_dict' that will render the data_dict.html template based on the data submitted from the form
-"""
-@app.route('/data_dict', methods=['GET', 'POST'])
-def data():
-    if request.method == 'POST':
-        table = request.form['table']
-        # Filter the DataFrame based on the selected table
-        filtered_data = data_dict[data_dict['Table Name'] == table]
-
-        # Convert the filtered data to a list of dictionaries
-        data = filtered_data.to_dict('records')
-
-        return render_template('data_dict.html', data=data, table_names=table_name_list, selected_table=table)
-    else:
-        return render_template('data_dict.html',table_names=table_name_list,selected_table='')
-    
-
-@app.route('/questions', methods=['GET'])
-def questions():
-    return render_template('questions.html')
-"""
 
 if __name__ == '__main__':
     app.run(debug=True)
