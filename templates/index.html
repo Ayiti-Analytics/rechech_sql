@@ -56,6 +56,7 @@
     <br>
     <p>AI Response: {{ai_result}}</p>
     <h2>AI Steps:</h2>
+    {% if data %}
     {% for item in data %}
         {% if item is mapping %}
             <h2>Step {{ loop.index }}:</h2>
@@ -91,7 +92,7 @@
             <p>{{ item }}</p>
         {% endif %}
     {% endfor %}
-
+    {% endif %}
   {% endif %}
   {% endblock %}
 </body>

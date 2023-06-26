@@ -39,7 +39,7 @@ engine = create_engine(db_uri)
 # Load OpenAI API key from environment variable
 openai.api_key = os.environ.get("OPENAI_API")
 
-llm = OpenAI(openai_api_key=os.environ.get("OPENAI_API"), temperature=0)
+llm = OpenAI(openai_api_key=os.environ.get("OPENAI_API"), temperature=0,max_tokens=800)
 db = SQLDatabase.from_uri(db_uri)
 db_chain = SQLDatabaseChain(llm=llm,database=db,verbose=True,use_query_checker=True, return_intermediate_steps=True)
 
@@ -83,6 +83,7 @@ def index():
                 return render_template('index.html', ai_result=ai_result, input_text=input_text,data = steps )
             except Exception as e:
                 # Render the template with the SQL error
+                print(input_text)
                 return render_template('error.html', error=str(e))
         else:
             try:
